@@ -1,0 +1,144 @@
+<!--
+	MD 12.9.18
+	v 1.0
+
+	využívá Materialize, True Favicon Generator, JavaScript
+-->
+
+<!DOCTYPE html>
+<html lang="cz">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie-edge">
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import main fonts
+	<link href="https://fonts.googleapis.com/css?family=Exo+2|Open+Sans&amp;subset=latin-ext" rel="stylesheet">-->
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="194x194" href="/favicon-194x194.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="apple-mobile-web-app-title" content="&Scaron;kola">
+	<meta name="application-name" content="&Scaron;kola">
+	<meta name="msapplication-TileColor" content="#00aba9">
+	<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+	<meta name="theme-color" content="#009f71">
+
+	<style>
+		.cc {background-color: #009f71 !important;} /*custom color*/
+		.bm {margin-bottom: 0.4em;} /*button margin*/
+		.bi {margin-top: -0.2em; transform:matrix(1,0,0,1,-2.5,5)} /*bad image*/
+	</style>
+</head>
+
+<body bgcolor="#101010" onload="loaded">
+	<footer class="page-footer blue-grey darken-4 z-depth-5">
+		<h1 class="container">Škola</h1><br>
+	</footer><br>
+	<div class="container white-text">
+
+	<div class="row">
+
+		<div class="col s12 m6 l4">
+			<h4>Rozvrh hodin</h4>
+
+			<a class="waves-effect btn cc bm" href="https://www.spseol.cz/data/rozvrhy/rozvrhtr.htm">
+				Rozvrh tříd</a>
+			<a class="waves-effect btn cc bm" href="https://www.spseol.cz/data/rozvrhy/suplobec.htm">
+				Změny v rozvrhu</a>
+			
+			<br>
+			<div id="hodina" style="opacity: 0.4">Je n. hodina.</div>
+		</div>
+		<div class="col s12 m6 l4">
+			<h4>Jídelna</h4>
+
+			<a class="waves-effect btn purple bm" href="https://www.strava.cz/Strava/Stravnik/Jidelnicky?tisk&zarizeni=1005#jidelnicky_jidelnicek_obalka">
+				Jídelníček</a>
+			<a class="waves-effect btn purple bm" href="https://www.strava.cz/Strava/Stravnik/Objednavky#objednavky-obsah">
+				Objednávky</a>
+		</div>
+		<div class="col s12 m6 l4">
+			<h4>Ostatní</h4>
+
+			<a class="waves-effect btn red bm" href="https://www.spseol.cz/informace-o-skole/dokumenty-skoly?download=1:skolni-rad">
+				<i class="material-icons bi">picture_as_pdf</i>
+				Školní řád</a>
+
+			<a class="waves-effect btn cyan bm" href="https://www.spseol.cz/kalendar#jevents_body">
+				Kalendář</a>
+
+			<a class="waves-effect btn cyan bm" href="https://mailgw.spseol.cz/">
+				E-mail</a>
+
+			<a class="waves-effect btn cyan bm disabled" href="https://mailgw.spseol.cz/">
+				Klasifikace</a>
+		</div>
+
+	</div>
+
+<script>
+	window.onload = loaded(); // https://stackoverflow.com/a/807895
+	window.setInterval(loaded(), 10 * 1000); // https://stackoverflow.com/a/2170924
+
+	const rozvrh = [705,750,800,845,850,935,945,1030,1045,1130,1135,
+						1220,1240,1325,1330,1415,1420,1505,1510,1555];
+
+	function loaded() {
+		var date = new Date();
+		var timecode = date.getHours()*100 + date.getMinutes()
+
+		if (timecode < 30 || timecode > 2330) {
+			document.getElementById("hodina").innerHTML = `Je docela pozdě!`;
+		} else if(timecode >= 30 && timecode ) {
+			document.getElementById("hodina").innerHTML = `Měl bys jít spát...`;
+		} else if(timecode >= 705 && timecode <= 1555) {
+			document.getElementById("hodina").innerHTML = pojmenovat(timecode,rozvrh);
+		} else {
+			document.getElementById("hodina").innerHTML = ``;
+		}
+	}
+
+	function pojmenovat(t,r) {
+		for (var i = 0; i < r.length; i++) {
+			if (t >= r[i] && t < r[i+1]) {
+				break;
+			}
+		}
+
+		if (isOdd(i)) {
+			return `Je přestávka před ${Math.ceil(i/2)}. hodinou.`
+		} else if (isEven(i)) {
+			return `Je ${Math.floor(i/2)}. hodina.`
+		} else {
+			console.log(i)
+			return `Chyba při výpočtu hodiny.`
+		}
+	}
+
+	// https://stackoverflow.com/a/6211660	{
+		function isEven(n) {
+			return n % 2 == 0;
+		}
+
+		function isOdd(n) {
+			return Math.abs(n % 2) == 1;
+		}
+	//	}
+
+</script>
+
+	</div>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+
+</body>
+</html>
