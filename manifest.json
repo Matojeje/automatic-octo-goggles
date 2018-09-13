@@ -1,7 +1,7 @@
 {
     "name": "\u0160kola",
     "short_name": "\u0160kola",
-    "start_url": "./",
+    "start_url": "/index.html?utm_source=homescreen",
     "icons": [
         {
             "src": "/favicon-32x32.png",
@@ -16,6 +16,11 @@
         {
             "src": "/android-chrome-256x256.png",
             "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/normal-520x520.png",
+            "sizes": "520x520",
             "type": "image/png"
         }
     ],

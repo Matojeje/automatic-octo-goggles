@@ -1,12 +1,12 @@
 <!--
 	MD 13.9.18
-	v 2.1
+	v 2.2
 
 	využívá Materialize, True Favicon Generator, JavaScript, Platform.js
 -->
 
 <!DOCTYPE html>
-<html> <!--<html lang="cz">-->
+<html lang="cz">
 <head>
 	<title>Škola</title>
 
@@ -27,12 +27,12 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="194x194" href="/favicon-194x194.png">
 	<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+	
 	<!-- https://stackoverflow.com/questions/41881525/chrome-add-to-desktop-icon-not-working#comment70945312_41881525 -->
 	<link rel="shortcut icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
 	<link rel="shortcut icon" type="image/png" sizes="256x256" href="/android-chrome-256x256.png">
 
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-	<meta name="description" content="" />
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-title" content="&Scaron;kola">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -41,7 +41,8 @@
 	<meta name="msapplication-TileImage" content="/mstile-144x144.png">
 	<meta name="theme-color" content="#009f71">
 
-	<link rel="manifest" href="/manifest.json">
+	<meta name="robots" content="noindex"/>
+	<meta name="description" content="" />
 
 	<style>
 		.cc {background-color: #009f71 !important;} /*custom color*/
@@ -49,6 +50,8 @@
 		.bi {margin-top: -0.2em; transform:matrix(1,0,0,1,-2.5,5)} /*bad image*/
 		.minor {opacity: 0.4} /*minor text*/
 	</style>
+	
+	<link rel="manifest" href="manifest.json">
 </head>
 
 <body bgcolor="#101010" onload="loaded">
@@ -191,6 +194,7 @@
 		}
 	//	}
 
+/*
 	// https://developers.google.com/web/fundamentals/primers/service-workers/ {
 		if ('serviceWorker' in navigator) {
 		window.addEventListener('load', function() {
@@ -204,6 +208,7 @@
 		});
 		}
 	//  }
+*/
 
 	// loaded();
 
@@ -217,6 +222,19 @@
 	</div>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/platform.js"></script>
+
+	<script> // https://codelabs.developers.google.com/codelabs/add-to-home-screen/#5
+		if ('serviceWorker' in navigator) {
+			console.log("Will the service worker register?");
+			navigator.serviceWorker.register('service-worker.js')
+			.then(function(reg){
+				console.log("Yes, it did.");
+			}).catch(function(err) {
+				console.log("No it didn't. This happened: ", err)
+			});
+		}
+	</script>
+
 
 </body>
 </html>
