@@ -1,25 +1,25 @@
 {
     "name": "\u0160kola",
     "short_name": "\u0160kola",
-    "start_url": "/index.html?utm_source=homescreen",
+    "start_url": "index.html?utm_source=homescreen",
     "icons": [
         {
-            "src": "/favicon-32x32.png",
+            "src": "favicon-32x32.png",
             "sizes": "32x32",
             "type": "image/png"
         },
         {
-            "src": "/android-chrome-192x192.png",
+            "src": "android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/android-chrome-256x256.png",
+            "src": "android-chrome-256x256.png",
             "sizes": "256x256",
             "type": "image/png"
         },
         {
-            "src": "/normal-520x520.png",
+            "src": "normal-520x520.png",
             "sizes": "520x520",
             "type": "image/png"
         }
