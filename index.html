@@ -1,6 +1,6 @@
 <!--
 	MD 13.9.18
-	v 1.2
+	v 1.3
 
 	využívá Materialize, True Favicon Generator, JavaScript
 -->
@@ -46,7 +46,13 @@
 <body bgcolor="#101010" onload="loaded">
 	<footer class="page-footer blue-grey darken-4 z-depth-5">
 		<h1 class="container">Škola</h1><br>
-	</footer><br>
+		<div class="progress black" id="loading">
+			<div class="indeterminate"></div>
+		</div>
+	</footer>
+
+	<br>
+
 	<div class="container white-text">
 
 	<div class="row">
@@ -74,7 +80,7 @@
 			<h4>Ostatní</h4>
 
 			<a class="waves-effect btn red bm" href="https://www.spseol.cz/informace-o-skole/dokumenty-skoly?download=1:skolni-rad">
-				<i class="material-icons bi">picture_as_pdf</i>
+				<i class="material-icons left">picture_as_pdf</i>
 				Školní řád</a>
 
 			<a class="waves-effect btn cyan bm" href="https://www.spseol.cz/kalendar#jevents_body">
@@ -90,25 +96,33 @@
 	</div>
 
 <script>
+	const rozvrh = [705,750,800,845,850,935,945,1030,1045,1130,1135,
+	1220,1240,1325,1330,1415,1420,1505,1510,1555];
+
 	window.onload = loaded(); // https://stackoverflow.com/a/807895
 	window.setInterval(loaded(), 10 * 1000); // https://stackoverflow.com/a/2170924
-
-	const rozvrh = [705,750,800,845,850,935,945,1030,1045,1130,1135,
-						1220,1240,1325,1330,1415,1420,1505,1510,1555];
-
+	
 	function loaded() {
+		document.getElementById("loading").style = "display:none"
+
 		var date = new Date();
 		var timecode = date.getHours()*100 + date.getMinutes()
 
 		if (timecode < 30 || timecode > 2330) {
 			document.getElementById("hodina").innerHTML = `Je docela pozdě!`;
-		} else if(timecode >= 30 && timecode ) {
+			console.log("je pozdě")
+		} else if(timecode >= 30 && timecode < 530) {
 			document.getElementById("hodina").innerHTML = `Měl bys jít spát...`;
+			console.log("je hodně pozdě")
 		} else if(timecode >= 705 && timecode <= 1555) {
 			document.getElementById("hodina").innerHTML = pojmenovat(timecode,rozvrh);
+			console.log("je škola")
 		} else {
 			document.getElementById("hodina").innerHTML = ``;
+			console.log("není nic")
 		}
+
+		return timecode;
 	}
 
 	function pojmenovat(t,r) {
@@ -141,7 +155,7 @@
 	// https://developers.google.com/web/fundamentals/primers/service-workers/ {
 		if ('serviceWorker' in navigator) {
 		window.addEventListener('load', function() {
-			navigator.serviceWorker.register('/js/sw.js').then(function(registration) {
+			navigator.serviceWorker.register('sw.js').then(function(registration) {
 			// Registration was successful
 			console.log('ServiceWorker registration successful with scope: ', registration.scope);
 			}, function(err) {
@@ -151,6 +165,8 @@
 		});
 		}
 	//  }
+
+	// loaded();
 
 </script>
 
