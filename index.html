@@ -1,6 +1,6 @@
 <!--
 	MD 13.9.18
-	v 1.5
+	v 1.7
 
 	využívá Materialize, True Favicon Generator, JavaScript
 -->
@@ -50,10 +50,9 @@
 <body bgcolor="#101010" onload="loaded">
 	<footer class="page-footer blue-grey darken-4 z-depth-5">
 		<div class="container">
-			<table><tbody><tr>
-				<td><h1>Škola</h1></td>
-				<td><div align="right" class="minor" id="clock"></div></td>
-			</tr></tbody></table>
+			<h1 style="text-align:left;float:left;">Škola</h1> <!-- https://stackoverflow.com/a/4736086 -->
+			<div align="right" class="minor" id="clock" style="text-align:right;float:right;"></div>
+			<hr style="clear:both;"/>
 			<br>
 		</div>
 		<div class="progress black" id="loading">
