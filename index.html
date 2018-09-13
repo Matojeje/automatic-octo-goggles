@@ -1,12 +1,12 @@
 <!--
 	MD 13.9.18
-	v 1.8
+	v 2.0
 
 	využívá Materialize, True Favicon Generator, JavaScript
 -->
 
 <!DOCTYPE html>
-<html lang="cz">
+<html> <!--<html lang="cz">-->
 <head>
 	<title>Škola</title>
 
@@ -23,21 +23,25 @@
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="194x194" href="/favicon-194x194.png">
 	<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
 	<!-- https://stackoverflow.com/questions/41881525/chrome-add-to-desktop-icon-not-working#comment70945312_41881525 -->
 	<link rel="shortcut icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
 	<link rel="shortcut icon" type="image/png" sizes="256x256" href="/android-chrome-256x256.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/manifest.json">
+
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="description" content="" />
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-title" content="&Scaron;kola">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="application-name" content="&Scaron;kola">
 	<meta name="msapplication-TileColor" content="#00aba9">
 	<meta name="msapplication-TileImage" content="/mstile-144x144.png">
 	<meta name="theme-color" content="#009f71">
+
+	<link rel="manifest" href="/manifest.json">
 
 	<style>
 		.cc {background-color: #009f71 !important;} /*custom color*/
@@ -49,15 +53,13 @@
 
 <body bgcolor="#101010" onload="loaded">
 	<footer class="page-footer blue-grey darken-4 z-depth-5">
-		<div class="container" style="height:5em;">
-			<h1 style="text-align:left;float:left;">Škola</h1> <!-- https://stackoverflow.com/a/4736086 -->
-			<div align="right" class="minor" id="clock" style="text-align:right;float:right;"></div>
-			<hr style="clear:both;opacity:0;"/>
-		</div>
-		<div class="progress black" id="loading">
+		<h2 class="container">Škola</h1>
+		<!--<div class="progress black" id="loading">
 			<div class="indeterminate"></div>
-		</div>
+		</div>-->
 	</footer>
+
+	<div class="minor white-text fixed-action-btn" id="clock"></div>
 
 	<br>
 
@@ -107,11 +109,11 @@
 	const rozvrh = [705,750,800,845,850,935,945,1030,1045,1130,1135,
 	1220,1240,1325,1330,1415,1420,1505,1510,1555];
 
-	window.onload = loaded(); // https://stackoverflow.com/a/807895
-	var updater = window.setInterval(loaded(), 1 * 1000); // https://stackoverflow.com/a/2170924; https://www.w3schools.com/js/js_timing.asp
-	
 	function loaded() {
-		document.getElementById("loading").style = "display:none"
+		let rozvrh = [705,750,800,845,850,935,945,1030,1045,1130,1135,
+		1220,1240,1325,1330,1415,1420,1505,1510,1555];
+
+		//document.getElementById("loading").style = "display:none"
 
 		var date = new Date();
 		var timecode = date.getHours()*100 + date.getMinutes()
@@ -128,9 +130,10 @@
 			document.getElementById("hodina").innerHTML = pojmenovat(timecode,rozvrh);
 			console.log("je škola")
 		} else {
-			document.getElementById("hodina").innerHTML = ``;
+			document.getElementById("hodina").innerHTML = `Právě teď není škola`;
 			console.log("není nic")
 		}
+		
 		return timecode;
 	}
 
@@ -176,6 +179,9 @@
 	//  }
 
 	// loaded();
+
+	window.onload = loaded; // https://stackoverflow.com/a/807895
+	var updater = window.setInterval(loaded, 1 * 1000); // https://stackoverflow.com/a/2170924; https://www.w3schools.com/js/js_timing.asp
 
 </script>
 

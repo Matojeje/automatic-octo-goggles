@@ -1,8 +1,13 @@
 {
     "name": "\u0160kola",
     "short_name": "\u0160kola",
-    "start_url": "/?homescreen=1",
+    "start_url": "./",
     "icons": [
+        {
+            "src": "/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
         {
             "src": "/android-chrome-192x192.png",
             "sizes": "192x192",
@@ -16,5 +21,6 @@
     ],
     "theme_color": "#009f71",
     "background_color": "#009f71",
-    "display": "standalone"
+    "display": "standalone",
+    "gcm_user_visible_only": true
 }
