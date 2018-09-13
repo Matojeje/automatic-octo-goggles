@@ -1,6 +1,6 @@
 <!--
 	MD 13.9.18
-	v 1.4
+	v 1.5
 
 	využívá Materialize, True Favicon Generator, JavaScript
 -->
@@ -43,12 +43,13 @@
 		.cc {background-color: #009f71 !important;} /*custom color*/
 		.bm {margin-bottom: 0.4em;} /*button margin*/
 		.bi {margin-top: -0.2em; transform:matrix(1,0,0,1,-2.5,5)} /*bad image*/
+		.minor {opacity: 0.4} /*minor text*/
 	</style>
 </head>
 
 <body bgcolor="#101010" onload="loaded">
 	<footer class="page-footer blue-grey darken-4 z-depth-5">
-		<h1 class="container">Škola</h1><br>
+		<h1 class="container">Škola</h1><br><div align="right" class="minor" id="clock"></div>
 		<div class="progress black" id="loading">
 			<div class="indeterminate"></div>
 		</div>
@@ -69,7 +70,7 @@
 				Změny v rozvrhu</a>
 			
 			<br>
-			<div id="hodina" style="opacity: 0.4">Je n. hodina.</div>
+			<div id="hodina" class="minor">Je n. hodina.</div>
 		</div>
 		<div class="col s12 m6 l4">
 			<h4>Jídelna</h4>
@@ -103,13 +104,15 @@
 	1220,1240,1325,1330,1415,1420,1505,1510,1555];
 
 	window.onload = loaded(); // https://stackoverflow.com/a/807895
-	window.setInterval(loaded(), 10 * 1000); // https://stackoverflow.com/a/2170924
+	var updater = window.setInterval(loaded(), 1 * 1000); // https://stackoverflow.com/a/2170924; https://www.w3schools.com/js/js_timing.asp
 	
 	function loaded() {
 		document.getElementById("loading").style = "display:none"
 
 		var date = new Date();
 		var timecode = date.getHours()*100 + date.getMinutes()
+		
+		document.getElementById("clock").innerHTML = date.toLocaleTimeString();
 
 		if (timecode < 30 || timecode > 2330) {
 			document.getElementById("hodina").innerHTML = `Je docela pozdě!`;
@@ -124,7 +127,6 @@
 			document.getElementById("hodina").innerHTML = ``;
 			console.log("není nic")
 		}
-
 		return timecode;
 	}
 
