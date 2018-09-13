@@ -1,6 +1,6 @@
 <!--
-	MD 12.9.18
-	v 1.0
+	MD 13.9.18
+	v 1.1
 
 	využívá Materialize, True Favicon Generator, JavaScript
 -->
@@ -25,8 +25,9 @@
 	<link rel="icon" type="image/png" sizes="194x194" href="/favicon-194x194.png">
 	<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
+	<link rel="manifest" href="/manifest.json">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-title" content="&Scaron;kola">
 	<meta name="application-name" content="&Scaron;kola">
 	<meta name="msapplication-TileColor" content="#00aba9">
@@ -134,6 +135,20 @@
 			return Math.abs(n % 2) == 1;
 		}
 	//	}
+
+	// https://developers.google.com/web/fundamentals/primers/service-workers/ {
+		if ('serviceWorker' in navigator) {
+		window.addEventListener('load', function() {
+			navigator.serviceWorker.register('/js/sw.js').then(function(registration) {
+			// Registration was successful
+			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+			}, function(err) {
+			// registration failed :(
+			console.log('ServiceWorker registration failed: ', err);
+			});
+		});
+		}
+	//  }
 
 </script>
 
