@@ -4,6 +4,11 @@
     "start_url": "https://matojeje.github.io/automatic-octo-goggles/index.html?utm_source=homescreen",
     "icons": [
         {
+            "src": "https://matojeje.github.io/automatic-octo-goggles/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
             "src": "https://matojeje.github.io/automatic-octo-goggles/favicon-32x32.png",
             "sizes": "32x32",
             "type": "image/png"
