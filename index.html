@@ -1,8 +1,8 @@
 <!--
 	MD 13.9.18
-	v 2.0
+	v 2.1
 
-	využívá Materialize, True Favicon Generator, JavaScript
+	využívá Materialize, True Favicon Generator, JavaScript, Platform.js
 -->
 
 <!DOCTYPE html>
@@ -52,14 +52,14 @@
 </head>
 
 <body bgcolor="#101010" onload="loaded">
-	<footer class="page-footer blue-grey darken-4 z-depth-5">
+	<footer id="head" class="page-footer blue-grey darken-4 z-depth-5">
 		<h2 class="container">Škola</h1>
 		<!--<div class="progress black" id="loading">
 			<div class="indeterminate"></div>
 		</div>-->
 	</footer>
 
-	<div class="minor white-text fixed-action-btn" id="clock"></div>
+	<div class="minor white-text fixed-action-btn" title="Místní čas tvého zařízení. Pro opravdu aktuální čas navštiv stránku time.is!" id="clock"></div>
 
 	<br>
 
@@ -105,6 +105,22 @@
 
 	</div>
 
+	<div id="homescreenTip" style="display:none"><footer>
+		<div class="row">
+			<div class="col s12 m6">
+				<div class="card card-content blue-grey darken-1" style="padding:1em">
+				<span class="card-title">Tip!</span>
+				<p>Přidej si tuhle stránku na domovskou obrazovku jako WebAPK!<br><hr>
+					<i class="material-icons bi">more_vert arrow_forward</i>
+					<span class="btn-flat white-text waves-effect" style="margin-left: -0.5em; margin-top: -0.25em">
+						Přidat na plochu
+					</span>
+				</p>
+				</div>
+			</div>
+		</div>
+	</div></footer></div>
+
 <script>
 	const rozvrh = [705,750,800,845,850,935,945,1030,1045,1130,1135,
 	1220,1240,1325,1330,1415,1420,1505,1510,1555];
@@ -118,22 +134,33 @@
 		var date = new Date();
 		var timecode = date.getHours()*100 + date.getMinutes()
 		
-		document.getElementById("clock").innerHTML = date.toLocaleTimeString();
+		document.getElementById("clock").innerHTML = "v2 :: " + date.toLocaleTimeString();
 
 		if (timecode < 30 || timecode > 2330) {
 			document.getElementById("hodina").innerHTML = `Je docela pozdě!`;
-			console.log("je pozdě")
+			//console.log("je pozdě")
 		} else if(timecode >= 30 && timecode < 530) {
 			document.getElementById("hodina").innerHTML = `Měl bys jít spát...`;
-			console.log("je hodně pozdě")
+			//console.log("je hodně pozdě")
 		} else if(timecode >= 705 && timecode <= 1555) {
 			document.getElementById("hodina").innerHTML = pojmenovat(timecode,rozvrh);
-			console.log("je škola")
+			//console.log("je škola")
 		} else {
 			document.getElementById("hodina").innerHTML = `Právě teď není škola`;
-			console.log("není nic")
+			//console.log("není nic")
 		}
 		
+		if (window.matchMedia('(display-mode: standalone)').matches) {
+			document.getElementById("head").style = `
+				background: linear-gradient(0deg, rgb(0,159,113) 0%, rgb(0,95,68) 100%);`
+		} else {
+			if (platform.name == "Chrome Mobile") {
+				document.getElementById("homescreenTip").style = "display:inherit";
+			}
+		}
+
+
+		first = false;
 		return timecode;
 	}
 
@@ -180,6 +207,8 @@
 
 	// loaded();
 
+	first = true;
+
 	window.onload = loaded; // https://stackoverflow.com/a/807895
 	var updater = window.setInterval(loaded, 1 * 1000); // https://stackoverflow.com/a/2170924; https://www.w3schools.com/js/js_timing.asp
 
@@ -187,6 +216,7 @@
 
 	</div>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/platform.js"></script>
 
 </body>
 </html>
