@@ -1,12 +1,14 @@
 // https://stackoverflow.com/a/46541072
 
-var CACHE_NAME = 'jse-shub-cache-v1';
+var CACHE_NAME = 'jse-shub-cache-v3';
 var urlsToCache = [
 	'./',
-	'index.html',
+    'index.html',
+    'prazdniny.html',
     'service-worker.js',
     'manifest.json',
     'css/materialize.min.css',
+    'dist/Prazdniny_SPEOL_201819.ics',
 	'js/materialize.min.js',
 	'js/platform.js',
 	'https://fonts.gstatic.com/s/materialicons/v41/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
