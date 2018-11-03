@@ -1,6 +1,6 @@
 <!--
 	MD 3.11.18
-	v 4.0
+	v 4.1
 
 	využívá Materialize, True Favicon Generator, JavaScript, Platform.js, Moment.js, js-cookie, jQuery
 -->
@@ -72,7 +72,7 @@
 			<ul id="nav-mobile" class="right">
 				<li class="active"><a href="index.html">Zkratky</a></li>
 				<li><a href="prazdniny.html">Prázdniny</a></li>
-				<li><a onclick="$('#notice').toggle('fast')"><i class="material-icons yellow-text">warning</i></a></li>
+				<li><a onclick="$('#notice').toggle('fast')" class="tooltipped" data-tooltip="Jak aktualizovat stránku"><i class="material-icons yellow-text">warning</i></a></li>
 			</ul>
 		</div>
 	</nav>
@@ -81,7 +81,8 @@
 		<div class="indeterminate"></div>
 	</div>-->
 
-	<div class="minor white-text fixed-action-btn" title="Místní čas tvého zařízení. (Pro opravdu aktuální čas navštiv stránku time.is!)" id="clock"></div>
+	<div class="minor white-text fixed-action-btn tooltipped" id="clock" data-position="left"
+		data-tooltip="Místní čas tvého zařízení<!--. <br><span class='minor'>(Pro opravdu aktuální čas navštiv stránku time.is!)</span>-->"></div>
 
 	<br>
 
@@ -90,8 +91,9 @@
 	<div class="row">
 
 		<div class="card horizontal blue-grey darken-2" id="notice" style="display:none">
+			<!-- <div id="toWarn" onload="warnBanner('toWarn');"></div> -->
 			<div class="card-image">
-				<div style="width:200px; height:100%; background-image:url('wb4x.png');
+				<div style="width:14.642vw; max-width:170px; height:100%; background-image:url('wb4x.png');
 					background-repeat: repeat-y; background-size: 100%"></div>
 			</div>
 			<div class="card-stacked">
@@ -107,11 +109,11 @@
 					téhle stránce mezipaměť. Otevři si aplikaci pomocí oznámení uvnitř Chromu a klikni na
 					ikonku zámku u adresy, potom přejdi na nastavení webu a vymaž uložená data.</p>
 				</div>
-				<div class="card-action">
-					<span class="minor">Maty Dřízhal</span>
-					<a onclick="$('#notice').slideUp(500)" class="right">
-						<i class="material-icons bi">keyboard_arrow_down</i>
+				<div class="card-action" style="padding-top: 8px; padding-bottom: 8px;">
+					<span style="opacity: 0.4">Maty Dřízhal</span>
+					<a onclick="$('#notice').slideUp(500)" class="right btn-small waves-effect waves-yellow amber accent-4 black-text">
 						OK!
+						<i class="material-icons" style="margin-top: -0.2em; transform:matrix(1,0,0,1,5,5)">keyboard_arrow_down</i>
 					</a>
 				</div>
 			</div>
