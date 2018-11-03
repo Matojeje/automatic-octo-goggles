@@ -31,39 +31,80 @@
 	<meta name="robots" content="noindex"/>
 	<meta name="description" content="" />
 
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 	<style>
 		.cc {background-color: #009f71 !important;} /*custom color*/
 		.minor {opacity: 0.4} /*minor text*/
+		.bi {margin-top: -0.2em; transform:matrix(1,0,0,1,-2.5,5)} /*bad image*/
+		@media only screen and (max-width: 991px){
+		.sp {padding-left: 0.2em; padding-right: 0.2em;}} /*small padding*/
+		.tp {padding: 1em!important} /*tiny padding*/
 	</style>
 	
 	<link rel="manifest" href="https://matojeje.github.io/automatic-octo-goggles/manifest.json">
 </head>
 
-<body bgcolor="#101010" onload="loaded"> <!--  class="nav-wrapper blue-grey darken-4 z-depth-5"  -->
-	<nav class="blue-grey darken-4 z-depth-5">
-		<div class="nav-wrapper container">
-			<a href="#" class="brand-logo left">Škola</a>
-			<ul id="nav-mobile" class="right">
-				<li><a href="index.html">Zkratky</a></li>
-				<li class="active"><a href="prazdniny.html">Prázdniny</a></li>
-			</ul>
-		</div>
-	</nav>
-	
+<!--#############################################################################
+	#############################################################################-->
+
+
+	<body bgcolor="#111" onload="loaded()"> <!--  class="nav-wrapper blue-grey darken-4 z-depth-5"  -->
+		<nav class="blue-grey darken-4 z-depth-5" id="head">
+			<div class="nav-wrapper container">
+				<a href="#" class="brand-logo left">Škola</a>
+				<ul id="nav-mobile" class="right">
+					<li class="active"><a href="index.html">Zkratky</a></li>
+					<li><a href="prazdniny.html">Prázdniny</a></li>
+					<li><a onclick="$('#notice').toggle('fast')"><i class="material-icons yellow-text">warning</i></a></li>
+				</ul>
+			</div>
+		</nav>
+		
 	<div class="minor white-text fixed-action-btn" title="Místní čas tvého zařízení. Pro opravdu aktuální čas navštiv stránku time.is!" id="clock"></div>
 	<br>
 
-	<div id="hlavni" class="container white-text">
+	<div class="container">
+		<div class="card white horizontal" id="notice" style="display:none">
+			<div class="card-image">
+				<div style="width:200px; height:100%; background-image:url('wb4x.png');
+					background-repeat: repeat-y; background-size: 100%"></div>
+			</div>
+			<div class="card-stacked">
+				<div class="card-content">
+					<b class="amber-text">Tato stránka je ve vývoji.</b>
+					<p>Tvůj prohlížeč může ukládat zastaralé verze této stránky <b>do jeho mezipaměti</b>
+					a neukazovat ti aktuální (a nejnovější) verzi. Abys viděl aktuální verzi této stránky
+					v případě, že by sis nebyl jistý, otevři si tuhle stránku v <b>anonymním režimu</b> nebo
+					jinak zajisti, ať tvůj prohlížeč nic neukládá nebo nenačítá.</p>
 
-		<h2>Prázdniny, svátky a akce</h2><br>
+					<div style="height:0.4em"></div> <p>V případě, že máš tuhle
+					stránku jako zástupce ne ploše mobilu ve formě <b>WebAPK</b>y, prosím každý týden vymaž
+					téhle stránce mezipaměť. Otevři si aplikaci pomocí oznámení uvnitř Chromu a klikni na
+					ikonku zámku u adresy, potom přejdi na nastavení webu a vymaž uložená data.</p>
+				</div>
+				<div class="card-action">
+					<span class="minor">Maty Dřízhal</span>
+					<a onclick="$('#notice').slideUp(500)" class="right">
+						<i class="material-icons bi">keyboard_arrow_down</i>
+						OK!
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="hlavni" class="white-text">
+				
+		<h4 class="container">Prázdniny, svátky a akce</h4><br>
 		<!--<hr class="minor" size=1 noshade>-->
 
-		<div class="row card-panel grey darken-4">
+		<div class="row card-panel grey darken-4 sp">
 			<h4>1. pololetí</h4>
 
 			<div class="col s12 m12 l6">
 				<div class="card indigo">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Den české státnosti</span>
 						<p>28. září</p>
 					</div>
@@ -72,7 +113,7 @@
 		
 			<div class="col s12 m12 l6">
 				<div class="card indigo">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Den vzniku samostatného československého státu</span>
 						<p>28. října</p>
 					</div>
@@ -81,7 +122,7 @@
 
 			<div class="col s12 m12 l6">
 				<div class="card blue">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Podzimní prázdniny</span>
 						<p>29. až 30. října</p>
 					</div>
@@ -90,7 +131,7 @@
 
 			<div class="col s12 m12 l6">
 				<div class="card indigo">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Den boje za svobodu a demokracii</span>
 						<p>17. listopadu</p>
 					</div>
@@ -99,7 +140,7 @@
 
 			<div class="col s12 m12 l6">
 				<div class="card blue-grey">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Den otevřených dveří</span>
 						<p>7. prosince od 8:30 do 17:30</p>
 					</div>
@@ -108,7 +149,7 @@
 
 			<div class="col s12 m12 l6">
 				<div class="card blue">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Vánoční prázdniny</span>
 						<p>22. prosince až 3. ledna</p>
 					</div>
@@ -117,7 +158,7 @@
 
 			<div class="col s12 m12 l6">
 				<div class="card blue-grey">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Den otevřených dveří</span>
 						<p>16. ledna od 13 do 18 hodin</p>
 					</div>
@@ -127,12 +168,12 @@
 
 		<br>
 
-		<div class="row card-panel grey darken-4">
+		<div class="row card-panel grey darken-4 sp">
 			<h4>2. pololetí</h4>
 
 			<div class="col s12 m12 l6">
 				<div class="card blue">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Pololetní prázdniny</span>
 						<p>1. února</p>
 					</div>
@@ -141,7 +182,7 @@
 
 			<div class="col s12 m12 l6">
 				<div class="card blue">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Jarní prázdniny</span>
 						<p>11. až 16. března</p>
 					</div>
@@ -150,7 +191,7 @@
 
 			<div class="col s12 m12 l6">
 				<div class="card blue">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Velikonoční prázdniny</span>
 						<p>18. až 20. dubna</p>
 					</div>
@@ -159,7 +200,7 @@
 
 			<div class="col s12 m12 l6">
 				<div class="card cyan">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Velikonoční pondělí</span>
 						<p>22. dubna</p>
 					</div>
@@ -168,7 +209,7 @@
 
 			<div class="col s12 m12 l6">
 				<div class="card cyan">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Svátek práce</span>
 						<p>1. května</p>
 					</div>
@@ -177,7 +218,7 @@
 
 			<div class="col s12 m12 l6">
 				<div class="card indigo">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title truncate">Den osvobození</span>
 						<p>8. května</p>
 					</div>
@@ -186,10 +227,11 @@
 
 		</div>
 
+	<div class="container">
 		<div class="row">
-			<div class="col s12 m12 l6">
+			<div class="col s12 m12 l9">
 				<div class="hoverable card blue-grey darken-2">
-					<div class="card-content white-text">
+					<div class="card-content white-text tp">
 						<span class="card-title">Co dál?</span>
 						Je možné si stáhnout soubor událostí kalendáře (.ics)
 						a přidat si tak školní události a prázdniny pro školní
@@ -225,11 +267,12 @@
 			Překrývající se události (např. Vánoce&nbsp;a vánoční prázdniny) jsou vynechány.
 		</div>
 	</div>
+</div>
 
 <script>
 	function loaded() {
 		var date = new Date();
-		document.getElementById("clock").innerHTML = "v3 :: " + date.toLocaleTimeString();
+		document.getElementById("clock").innerHTML = "v4 :: " + date.toLocaleTimeString();
 
 		if (window.matchMedia('(display-mode: standalone)').matches) {
 			document.getElementById("head").style = `
