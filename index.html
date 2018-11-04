@@ -1,6 +1,6 @@
 <!--
-	MD 3.11.18
-	v 4.2
+	MD 4.11.18
+	v 4.3
 
 	využívá Materialize, True Favicon Generator, JavaScript, Platform.js, Moment.js, js-cookie, jQuery
 -->
@@ -109,13 +109,13 @@
 					téhle stránce mezipaměť. Otevři si aplikaci pomocí oznámení uvnitř Chromu a klikni na
 					ikonku zámku u adresy, potom přejdi na nastavení webu a vymaž uložená data.</p><br>
 
-					<div class="row">
+					<!-- <div class="row">
 					<img width=100 height=auto src="https://cdn.discordapp.com/attachments/473963532782665738/508098339103834122/unknown.png"
 					class="materialboxed hoverable col" data-caption="Klikni pravým tlačítkem na tlačítko obnovení stránky (Google Chrome, desktop)">
 
 					<img width=100 height=auto src="https://cdn.discordapp.com/attachments/473963532782665738/508272580940136458/ff.png"
 					class="materialboxed hoverable col" data-caption="Klikni na informace o stránce, potom na podrobnosti spojení a více informací, na kartě zabezpečení v kategorii soukromí a historie vyber Vymazat cookies a uložená data. (Firefox, desktop)">
-					</div>
+					</div> -->
 				</div>
 				<div class="card-action" style="padding-top: 8px; padding-bottom: 8px;">
 					<span style="opacity: 0.4">Maty Dřízhal</span>
@@ -130,7 +130,7 @@
 		<div class="col s12 m6 l4">
 			<h4>Rozvrh hodin
 			<a class="hoverable waves-effect btn blue-grey darken-4 bm modal-trigger"
-				style="padding-left: 8.5px; padding-right: 8px"
+				style="padding-left: 8.5px; padding-right: 8px" id="settingsButton"
 				href="#modal1" onclick="loadSettingToUI()">
 
 				<i class="material-icons">settings</i></a>
@@ -270,7 +270,7 @@
 			</div> -->
 
 				<br>
-			<p class="left minor" style="margin-top:0.4em">Nastavení se ukládá do cookies po dobu 10 měsíců. <a onclick="removeSettings()">Vymazat cookie třídy teď</a></p>
+			<p class="left minor" style="margin-top:0.4em">Nastavení se ukládá do cookies po dobu 10 měsíců. <a onclick="removeSettings()" id="eraseCookie">Vymazat cookie třídy teď</a></p>
 		</div>
 		<div class="modal-footer black-text">
 			<a class="right waves-effect waves-teal btn-flat hoverable modal-close" onclick="saveSettings()">
@@ -312,17 +312,31 @@
 							</div>
 						</div>
 
-				<div class="video-container" style="padding-bottom:75vh">
-					<iframe src="" id="embedRozvrhShow" frameborder=0 width=100% height=100%
+				<div id="embedNoCookie">
+					<div class="card-panel white black-text">
+						Nyní si můžeš nastavit vlastní třídu!
+						<!-- <a onclick="M.TapTarget.tap.next();">Jak na to?</a> -->
+					</div>
+				</div>
+
+				<div class="video-container" style="padding-bottom:70vh">
+					<iframe src="https://www.spseol.cz/data/rozvrhy/rozvrhtr.htm"
+						id="embedRozvrhShow" frameborder=0 width=100% height=100%
 						style="filter: hue-rotate(180deg) invert(1);
 							background-color:rgb(199, 211, 217); /*rgb(217, 205, 199)*/
 							/* světelně invertovaná barva blue-grey darken-4 */">Rozvrh machine broke.</iframe>
 				</div>
 
-				<a class="btn-floating halfway-fab waves-effect waves-light red" href="https://www.spseol.cz/data/rozvrhy/rozvrhtr.htm">
+				<a class="btn-floating halfway-fab waves-effect waves-light red left" href="https://www.spseol.cz/data/rozvrhy/rozvrhtr.htm">
 					<i class="material-icons">open_in_new</i>
 				</a>
 			</div>
+		</div>
+	</div>
+
+	<div class="tap-target" data-target="settingsButton" id="tap">
+		<div class="tap-target-content">
+			uwu
 		</div>
 	</div>
 
@@ -372,11 +386,18 @@
 			document.getElementById("noticeVersion").innerHTML = v
 
 			c = Cookies.get('trida')
+			// console.log("aaaa?")
 			if(c != undefined) {
+				console.log("cookie defined")
 				if(c != "rozvrhtr") {document.getElementById("dispTrida").innerHTML = "y"}
 				document.getElementById("embedRozvrhShow").src = "https://www.spseol.cz/data/rozvrhy/"+c+".htm";
-				document.getElementById("embedRozvrhLoading").style = "display:none;"
+				document.getElementById("embedNoCookie").style = "display:none;"
+			} else {
+				console.log("cookie undefined")
+				document.getElementById("eraseCookie").style = "text-decoration-line: line-through;"
 			}
+
+			document.getElementById("embedRozvrhLoading").style = "display:none;"
 		}
 
 		first = false;
