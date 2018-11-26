@@ -1,16 +1,16 @@
 // https://stackoverflow.com/a/46541072
 
-var CACHE_NAME = 'jse-shub-cache-v40';
+var CACHE_NAME = 'jse-shub-cache-v50';
 var urlsToCache = [
 	'./',
     'index.html',
     'prazdniny.html',
+    'nastaveni.html',
     'service-worker.js',
     'manifest.json',
     'css/materialize.min.css',
     'dist/Prazdniny_SPEOL_201819.ics',
 	'js/materialize.min.js',
-	'js/platform.js',
 	'https://fonts.gstatic.com/s/materialicons/v41/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
 	'favicon.ico',
 	'favicon-16x16.png',
