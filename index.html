@@ -1,6 +1,6 @@
 <!--
-	MD 25.11.18
-	v 5.0
+	MD 26.11.18
+	v 5.1
 
 	využívá Materialize, True Favicon Generator, JavaScript, Moment.js, js-cookie, jQuery
 -->
@@ -97,7 +97,7 @@
 			<ul class="right hide-on-med-and-down">
 				<li class="active"><a href="index.html">Zkratky</a></li>
 				<li><a href="prazdniny.html">Prázdniny</a></li>
-				<li><a onclick="$('#notice').toggle('fast')" class="tooltipped" data-tooltip="Jak aktualizovat stránku"><i class="material-icons">warning</i></a></li>
+				<li><a onclick="$('#notice').toggle('fast')" class="tooltipped" data-tooltip="Jak aktualizovat stránku"><i class="material-icons blue-grey-text">warning</i></a></li>
 				<li><i class="di"></i></li>
 				<li><a href="nastaveni.html">Nastavení<i class="material-icons left" style="color:#0C9">settings</i></a></li>
 			</ul>
@@ -117,7 +117,7 @@
 	</div>-->
 
 	<div class="minor white-text fixed-action-btn tooltipped" id="clock" data-position="left"
-		data-tooltip="Místní čas tvého zařízení"></div>
+		data-tooltip="Místní čas tvého zařízení">Načítání...</div>
 
 	<br>
 
@@ -139,18 +139,25 @@
 					v případě, že by sis nebyl jistý, otevři si tuhle stránku v <b>anonymním režimu</b> nebo
 					jinak zajisti, ať tvůj prohlížeč nic neukládá nebo nenačítá.</p>
 
-					<div style="height:0.4em"></div> <p>V případě, že máš tuhle
-					stránku jako zástupce ne ploše mobilu ve formě <b>WebAPK</b>y, prosím každý týden vymaž
-					téhle stránce mezipaměť. Otevři si aplikaci pomocí oznámení uvnitř Chromu a klikni na
-					ikonku zámku u adresy, potom přejdi na nastavení webu a vymaž uložená data.</p><br>
-
-					<!-- <div class="row">
-					<img width=100 height=auto src="https://cdn.discordapp.com/attachments/473963532782665738/508098339103834122/unknown.png"
-					class="materialboxed hoverable col" data-caption="Klikni pravým tlačítkem na tlačítko obnovení stránky (Google Chrome, desktop)">
-
-					<img width=100 height=auto src="https://cdn.discordapp.com/attachments/473963532782665738/508272580940136458/ff.png"
-					class="materialboxed hoverable col" data-caption="Klikni na informace o stránce, potom na podrobnosti spojení a více informací, na kartě zabezpečení v kategorii soukromí a historie vyber Vymazat cookies a uložená data. (Firefox, desktop)">
-					</div> -->
+					<div style="height:0.4em"></div>
+					
+					<details>
+						<summary><u>Chrome</u></summary><p>
+						Klikni pravým tlačítkem na stránku, vyber "Prozkoumat", přejdi na kartu "Application", položku
+						"Clear storage" a vyber tlačítko "Clear site data".</p>
+						<br><img width=20% class="materialboxed hoverable" src="https://cdn.discordapp.com/attachments/473963532782665738/516715373886701579/unknown.png"><br><hr>
+					</details><details>
+							<summary><u>Chrome Mobile</u></summary><p>V případě, že máš tuhle
+							stránku jako zástupce ne ploše mobilu ve formě <b>WebAPK</b>y, prosím každý týden vymaž
+							téhle stránce mezipaměť. Otevři si aplikaci pomocí oznámení uvnitř Chromu a klikni na
+							ikonku zámku u adresy, potom přejdi na nastavení webu a vymaž uložená data.</p>
+							<br><img width=20% class="materialboxed hoverable" src="https://cdn.discordapp.com/attachments/473963532782665738/516713431164780546/unknown.png"><br><hr>
+					</details><details>
+						<summary><u>Firefox</u></summary><p>
+						Klikni na "Informace o stránce", potom na "Podrobnosti spojení" a "Více informací", na kartě
+						"Zabezpečení" v kategorii "Soukromí a historie" vyber "Vymazat cookies a uložená data".</p>
+						<br><img width=100% class="materialboxed hoverable" src="https://cdn.discordapp.com/attachments/473963532782665738/508272580940136458/ff.png">
+					</details>
 				</div>
 				<div class="card-action" style="padding-top: 8px; padding-bottom: 8px;">
 					<a onclick="$('#notice').slideUp(500)" class="right btn-small waves-effect waves-yellow amber accent-4 black-text">
@@ -172,7 +179,19 @@
 				Změny</a>
 			
 			<br>
-			<div id="hodina" class="minor">Je n. hodina.</div>
+			<div id="hodina" class="minor">
+				<div class="preloader-wrapper small active">
+					<div class="spinner-layer spinner-green-only">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div><div class="gap-patch">
+							<div class="circle"></div>
+						</div><div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="col s12 m6 l4">
 			<h4>Jídelna</h4>
@@ -287,7 +306,7 @@
 			M.AutoInit();
 			document.getElementById("noticeVersion").innerHTML = v
 
-			c = Cookies.get('trida')
+			c = Cookies.get('trida') || "rozvrhtr"
 			// console.log("aaaa?")
 			if(c != undefined) {
 				console.log("cookie defined")
@@ -299,13 +318,12 @@
 
 			document.getElementById("embedRozvrhLoading").style = "display:none;"
 
-			if (Cookies.get("links") == "true") {
-				exts =  document.getElementsByClassName("extlink");
-				var i;
+			if (Cookies.get("links") != "false") {
+				exts =  document.getElementsByClassName("extlink"); var i;
 				for (i = 0; i < exts.length; ++i) {exts[i].style = "display:initial"}
 			}
 
-			if (Cookies.get("iRozv") == "true") {extRozvrh.style = "display:none"}
+			if (Cookies.get("iRozv") != "false") {extRozvrh.style = "display:none"}
 		}
 
 		first = false;
@@ -313,10 +331,10 @@
 	}
 
 	function showRozvrh() {
-		if (Cookies.get("iRozv") == "true") {
+		if (Cookies.get("iRozv") != "false") {
 			$('#embedRozvrh').slideToggle('slow')
 		} else {
-			window.location.href = "https://www.spseol.cz/data/rozvrhy/"+c+".htm"
+			window.location.href = "https://www.spseol.cz/data/rozvrhy/"+(c || "rozvrhtr")+".htm"
 		}
 	}
 
@@ -359,7 +377,7 @@
 	first = true;
 
 	window.onload = loaded; // https://stackoverflow.com/a/807895
-	var updater = window.setInterval(loaded, 1 * 1000); // https://stackoverflow.com/a/2170924; https://www.w3schools.com/js/js_timing.asp
+	var updater = window.setInterval(loaded, 0.2 * 1000); // https://stackoverflow.com/a/2170924; https://www.w3schools.com/js/js_timing.asp
 
 </script>
 
@@ -369,6 +387,8 @@
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="js/countdown.min.js"></script>
+	<script type="text/javascript" src="js/moment-countdown.min.js"></script>
 
 
 	<script> // https://codelabs.developers.google.com/codelabs/add-to-home-screen/#5

@@ -1,6 +1,6 @@
 // https://stackoverflow.com/a/46541072
 
-var CACHE_NAME = 'jse-shub-cache-v50';
+var CACHE_NAME = 'jse-shub-cache-v51';
 var urlsToCache = [
 	'./',
     'index.html',
