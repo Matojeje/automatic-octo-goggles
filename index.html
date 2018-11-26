@@ -2,7 +2,7 @@
 	MD 22.11.18
 	v 4.6
 
-	využívá Materialize, True Favicon Generator, JavaScript, Platform.js, Moment.js, js-cookie, jQuery
+	využívá Materialize, True Favicon Generator, JavaScript, Moment.js, js-cookie, jQuery
 -->
 
 <!DOCTYPE html>
@@ -22,23 +22,23 @@
 	<!--Import materialize.css-->
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-	<link rel="apple-touch-icon" sizes="180x180" href="https://matojeje.github.io/automatic-octo-goggles/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="https://matojeje.github.io/automatic-octo-goggles/favicon-16x16.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="https://matojeje.github.io/automatic-octo-goggles/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="194x194" href="https://matojeje.github.io/automatic-octo-goggles/favicon-194x194.png">
-	<link rel="icon" type="image/png" sizes="192x192" href="https://matojeje.github.io/automatic-octo-goggles/android-chrome-192x192.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="194x194" href="favicon-194x194.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
 
 	<!-- https://stackoverflow.com/questions/41881525/chrome-add-to-desktop-icon-not-working#comment70945312_41881525 -->
-	<link rel="shortcut icon" type="image/png" sizes="192x192" href="https://matojeje.github.io/automatic-octo-goggles/android-chrome-192x192.png">
-	<link rel="shortcut icon" type="image/png" sizes="256x256" href="https://matojeje.github.io/automatic-octo-goggles/android-chrome-256x256.png">
+	<link rel="shortcut icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+	<link rel="shortcut icon" type="image/png" sizes="256x256" href="android-chrome-256x256.png">
 
-	<link rel="mask-icon" href="https://matojeje.github.io/automatic-octo-goggles/safari-pinned-tab.svg" color="#5bbad5">
+	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-title" content="&Scaron;kola">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="application-name" content="&Scaron;kola">
 	<meta name="msapplication-TileColor" content="#00aba9">
-	<meta name="msapplication-TileImage" content="https://matojeje.github.io/automatic-octo-goggles/mstile-144x144.png">
+	<meta name="msapplication-TileImage" content="mstile-144x144.png">
 	<meta name="theme-color" content="#009f71">
 
 	<meta name="robots" content="noindex"/>
@@ -51,6 +51,8 @@
 		.minor {opacity: 0.4} /*minor text*/
 		.nm {margin: 0em} /*no margin*/
 		.no {text-shadow: 0 0 3px #fafafa, 0 0 12px #fafafa;} /*no! don't let anyone see this*/
+		.di {background-color:black; opacity:0.5; width:1px; margin-left:0.5em; margin-right:0.5em} /*divider*/
+		.extlink {display:none};
 		body {text-rendering: optimizeLegibility;
 			/*position: relative; https://stackoverflow.com/a/13664533
   			height: auto;
@@ -90,21 +92,32 @@
 <body bgcolor="#111" onload="loaded()"> <!--  class="nav-wrapper blue-grey darken-4 z-depth-5"  -->
 	<nav class="blue-grey darken-4 z-depth-5" id="head">
 		<div class="nav-wrapper container">
-			<a href="#" class="brand-logo left">Škola</a>
-			<ul id="nav-mobile" class="right">
+			<a href="#" class="brand-logo">Škola</a>
+			<a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+			<ul class="right hide-on-med-and-down">
 				<li class="active"><a href="index.html">Zkratky</a></li>
 				<li><a href="prazdniny.html">Prázdniny</a></li>
-				<li><a onclick="$('#notice').toggle('fast')" class="tooltipped" data-tooltip="Jak aktualizovat stránku"><i class="material-icons yellow-text">warning</i></a></li>
+				<li><a onclick="$('#notice').toggle('fast')" class="tooltipped" data-tooltip="Jak aktualizovat stránku"><i class="material-icons">warning</i></a></li>
+				<li><i class="di"></i></li>
+				<li><a href="nastaveni.html">Nastavení<i class="material-icons left" style="color:#0C9">settings</i></a></li>
 			</ul>
 		</div>
 	</nav>
+
+	<ul class="sidenav" id="nav-mobile">
+		<li class="active"><a href="index.html">Zkratky</a></li>
+		<li><a href="prazdniny.html">Prázdniny</a></li>
+		<li><div class="divider"></div></li>
+		<li><a href="nastaveni.html">Nastavení<i class="material-icons right">settings</i></a></li>
+		<li><a onclick="$('#notice').toggle('fast')" class="sidenav-close">Jak aktualizovat stránku</a></li>
+	</ul>
 	
 	<!--<div class="progress black" id="loading">
 		<div class="indeterminate"></div>
 	</div>-->
 
 	<div class="minor white-text fixed-action-btn tooltipped" id="clock" data-position="left"
-		data-tooltip="Místní čas tvého zařízení<!--. <br><span class='minor'>(Pro opravdu aktuální čas navštiv stránku time.is!)</span>-->"></div>
+		data-tooltip="Místní čas tvého zařízení"></div>
 
 	<br>
 
@@ -140,7 +153,6 @@
 					</div> -->
 				</div>
 				<div class="card-action" style="padding-top: 8px; padding-bottom: 8px;">
-					<span style="opacity: 0.4">Maty Dřízhal</span>
 					<a onclick="$('#notice').slideUp(500)" class="right btn-small waves-effect waves-yellow amber accent-4 black-text">
 						OK!
 						<i class="material-icons" style="margin-top: -0.2em; transform:matrix(1,0,0,1,5,5)">keyboard_arrow_down</i>
@@ -150,17 +162,13 @@
 		</div>
 
 		<div class="col s12 m6 l4">
-			<h4>Rozvrh hodin
-			<a class="hoverable waves-effect btn blue-grey darken-4 bm modal-trigger"
-				style="padding-left: 8.5px; padding-right: 8px" id="settingsButton"
-				href="#modal1" onclick="loadSettingToUI()">
+			<h4>Rozvrh hodin</h4>
 
-				<i class="material-icons">settings</i></a>
-			</h4>
-
-			<a class="hoverable waves-effect btn cc bm" onclick="$('#embedRozvrh').slideToggle('slow')"> <!--href="https://www.spseol.cz/data/rozvrhy/rozvrhtr.htm"-->
+			<a class="hoverable waves-effect btn cc bm" onclick="showRozvrh();"> <!--href="https://www.spseol.cz/data/rozvrhy/rozvrhtr.htm"-->
+				<i class="material-icons right extlink" id="extRozvrh">open_in_new</i>
 				Rozvrh tříd<span id="dispTrida"></span></a>
 			<a class="hoverable waves-effect btn cc bm" href="https://www.spseol.cz/data/rozvrhy/suplobec.htm">
+				<i class="material-icons right extlink">open_in_new</i>
 				Změny</a>
 			
 			<br>
@@ -170,8 +178,10 @@
 			<h4>Jídelna</h4>
 
 			<a class="hoverable waves-effect btn purple bm" href="https://www.strava.cz/Strava/Stravnik/Jidelnicky?tisk&zarizeni=1005#jidelnicky_jidelnicek_obalka">
+				<i class="material-icons right extlink">open_in_new</i>
 				Jídelníček</a>
 			<a class="hoverable waves-effect btn purple bm" href="https://www.strava.cz/Strava/Stravnik/Objednavky#objednavky-obsah">
+				<i class="material-icons right extlink">open_in_new</i>
 				Objednávky</a>
 		</div>
 		<div class="col s12 m6 l4">
@@ -179,142 +189,29 @@
 
 			<a class="hoverable waves-effect btn red bm" href="https://www.spseol.cz/informace-o-skole/dokumenty-skoly?download=1:skolni-rad">
 				<i class="material-icons left">picture_as_pdf</i>
+				<i class="material-icons right extlink">open_in_new</i>
 				Školní řád</a>
 
 			<a class="hoverable waves-effect btn cyan bm" href="https://www.spseol.cz/kalendar#jevents_body">
+				<i class="material-icons right extlink">open_in_new</i>
 				Kalendář</a>
 
 			<a class="hoverable waves-effect btn cyan bm" href="https://mailgw.spseol.cz/">
+				<i class="material-icons right extlink">open_in_new</i>
 				E-mail</a>
 
 			<a class="hoverable waves-effect btn cyan bm" href="https://klasifikace.spseol.cz/">
+				<i class="material-icons right extlink">open_in_new</i>
 				Klasifikace</a>
-		</div>
 
-	</div>
-
-	<div id="modal1" class="modal modal-fixed-footer">
-		<div class="modal-content black-text "
-		  style="background-image:url('pcb corner.png'); background-repeat: no-repeat; background-position-x: 100%"
-		  >
-			<h4 class="no">Nastavení rozvrhu</h4>
-				<br>
-			<form action="#" name="tridamd" id="selectMed"> <!--class="hide-on-small-only"-->
-				<p>
-					<label>
-					<input class="with-gap" name="cl1" type="radio" value="rozvrhtr" />
-					<span>Všechny třídy</span>
-					</label>
-				</p>
-				<table class="no responsive-table highlight">
-					<tr>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trvj" />
-							<span>1A</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trvk" />
-							<span>1B</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trvl" />
-							<span>1L</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trvm" />
-							<span>1VE</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trvn" />
-							<span>1VT</span></label></td>
-					</tr>
-					<tr>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trvd" />
-							<span>2A</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trve" />
-							<span>2B</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trvf" />
-							<span>2L</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trvg" />
-							<span>2VE</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trvi" />
-							<span>2VT</span></label></td>
-					</tr>
-					<tr>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trv8" />
-							<span>3A</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trv9" />
-							<span>3B</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trva" />
-							<span>3L</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trvb" />
-							<span>3VE</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trvc" />
-							<span>3VT</span></label></td>
-					</tr>
-					<tr>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trv3" />
-							<span>4A</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trv4" />
-							<span>4B</span></label></td>
-						<td><label> <input class="with-gap" name="cl1" type="radio" value="trv5" />
-							<span>4L</span></label></td>
-					</tr>
-				</table>
-			</form>
-			<!-- <div class="hide-on-med-and-up" id="selectSmall">
-				<select name="trida-sm" class="input-field col s12 browser-default">
-					<option value="rozvrhtr" selected>Všechny třídy</option>
-
-					<optgroup label="1. ročník:">
-					<option value="trvj">1A</option>
-					<option value="trvk">1B</option>
-					<option value="trvl">1L</option>
-					<option value="trvm">1VE</option>
-					<option value="trvn">1VT</option>
-					</optgroup>
-
-					<optgroup label="2. ročník:">
-					<option value="trvd">2A</option>
-					<option value="trve">2B</option>
-					<option value="trvf">2L</option>
-					<option value="trvg">2VE</option>
-					<option value="trvi">2VT</option>
-					</optgroup>
-
-					<optgroup label="3. ročník:">
-					<option value="trv8">3A</option>
-					<option value="trv9">3B</option>
-					<option value="trva">3L</option>
-					<option value="trvb">3VE</option>
-					<option value="trvc">3VT</option>
-					</optgroup>
-
-					<optgroup label="4. ročník:">
-					<option value="trv3">4A</option>
-					<option value="trv4">4B</option>
-					<option value="trv5">4L</option>
-					</optgroup>
-				</select>
-				<label>Vyber si rozvrh</label>
-				<div style="height:2em"></div>
-			</div> -->
-
-				<br>
-			<p class="left minor" style="margin-top:0.4em">Nastavení se ukládá do cookies po dobu 10 měsíců. <a onclick="removeSettings()" id="eraseCookie">Vymazat cookie třídy teď</a></p>
-		</div>
-		<div class="modal-footer black-text">
-			<a class="right waves-effect waves-teal btn-flat hoverable modal-close" onclick="saveSettings()">
-				<i class="material-icons right teal-text">done_all</i>
-				Uložit</a>
-		</div>
-	</div>
-	
-	<div id="homescreenTip" style="display:none;"><footer>
-		<div class="row">
-			<div class="col s12 m6">
-				<div class="card card-content blue-grey darken-1" style="padding:1em">
-				<span class="card-title">Tip!</span>
-				<p>Přidej si tuhle stránku na domovskou obrazovku jako WebAPK!<br><hr>
-					<i class="material-icons bi">more_vert arrow_forward</i>
-					<span class="btn-flat white-text waves-effect" style="margin-left: -0.5em; margin-top: -0.25em">
-						Přidat na plochu
-					</span>
-				</p>
-				</div>
+			<div class="hide-on-large-only">
+			<br>
+			<a class="hoverable waves-effect btn orange darken-1 bm" href="nastaveni.html">
+				<i class="material-icons left">settings</i>
+				Nastavení</a>
 			</div>
-		</footer>
+		</div>
+
 	</div>
 
 	<div id="embeds" class="row">
@@ -334,15 +231,6 @@
 							</div>
 						</div>
 
-				<div id="embedNoCookie">
-					<div class="card-panel white black-text">
-						Nyní si můžeš&nbsp;
-						<b class="tooltipped" data-tooltip="Tlačítko nastavení je nahoře.">
-							<i class="material-icons bi">settings</i>nastavit
-						</b> vlastní třídu!&nbsp;&nbsp;(Tlačítko nastavení je nahoře.)
-					</div>
-				</div>
-
 				<div class="video-container" style="padding-bottom:35em">
 					<iframe src="https://www.spseol.cz/data/rozvrhy/rozvrhtr.htm"
 						id="embedRozvrhShow" frameborder=0 width=100% height=100%
@@ -361,7 +249,7 @@
 </div>
 
 <script>
-	const v = 4
+	const v = 5
 	const rozvrh = [705,750,800,845,850,935,945,1030,1045,1130,1135,
 	1220,1240,1325,1330,1415,1420,1505,1510,1555];
 
@@ -393,10 +281,6 @@
 		if (window.matchMedia('(display-mode: standalone)').matches) {
 			document.getElementById("head").style = `
 				background: linear-gradient(0deg, rgb(0,159,113) 0%, rgb(0,95,68) 100%);`
-		} else {
-			if (platform.name == "Chrome Mobile") {
-				document.getElementById("homescreenTip").style = "display:inherit";
-			}
 		}
 
 		if(first) {
@@ -409,17 +293,31 @@
 				console.log("cookie defined")
 				if(c != "rozvrhtr") {document.getElementById("dispTrida").innerHTML = "y"}
 				document.getElementById("embedRozvrhShow").src = "https://www.spseol.cz/data/rozvrhy/"+c+".htm";
-				document.getElementById("embedNoCookie").style = "display:none;"
 			} else {
 				console.log("cookie undefined")
-				document.getElementById("eraseCookie").style = "text-decoration-line: line-through;"
 			}
 
 			document.getElementById("embedRozvrhLoading").style = "display:none;"
+
+			if (Cookies.get("links") == "true") {
+				exts =  document.getElementsByClassName("extlink");
+				var i;
+				for (i = 0; i < exts.length; ++i) {exts[i].style = "display:initial"}
+			}
+
+			if (Cookies.get("iRozv") == "true") {extRozvrh.style = "display:none"}
 		}
 
 		first = false;
 		return timecode;
+	}
+
+	function showRozvrh() {
+		if (Cookies.get("iRozv") == "true") {
+			$('#embedRozvrh').slideToggle('slow')
+		} else {
+			window.location.href = "https://www.spseol.cz/data/rozvrhy/"+c+".htm"
+		}
 	}
 
 	function pojmenovat(t,r,w) {
@@ -438,44 +336,6 @@
 		} else {
 			console.log(i);
 			return `Chyba při výpočtu hodiny.`
-		}
-	}
-
-	function saveSettings() {
-		Cookies.set("trida",document.querySelector('input[name="cl1"]:checked').value, { expires: 305 }) // https://stackoverflow.com/a/15839451
-		location.reload(true);
-	}
-
-	function removeSettings() {
-		Cookies.remove("trida");
-		location.reload(true);
-	}
-
-	function loadSettingToUI() {
-		valuePairs = {
-			"rozvrhtr": 0,
-			"trvj": 1,
-			"trvk": 2,
-			"trvl": 3,
-			"trvm": 4,
-			"trvn": 5,
-			"trvd": 6,
-			"trve": 7,
-			"trvf": 8,
-			"trvg": 9,
-			"trvi": 10,
-			"trv8": 11,
-			"trv9": 12,
-			"trva": 13,
-			"trvb": 14,
-			"trvc": 15,
-			"trv3": 16,
-			"trv4": 17,
-			"trv5": 18
-		}
-		c = Cookies.get("trida")
-		if (c != undefined) {
-			document.tridamd.cl1[valuePairs[c]].checked = true // proud of this
 		}
 	}
 
@@ -506,8 +366,7 @@
 	</div>
 
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-	<script type="text/javascript" src="https://matojeje.github.io/automatic-octo-goggles/js/materialize.min.js"></script>
-	<script type="text/javascript" src="https://matojeje.github.io/automatic-octo-goggles/js/platform.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
