@@ -1,8 +1,8 @@
 <!--
-	MD 27.11.18
-	v 5.31
+	MD 4.12.18
+	v 5.4
 
-	využívá Materialize, True Favicon Generator, Moment.js, js-cookie, jQuery
+	využívá Materialize, True Favicon Generator, Moment.js, js-cookie, jQuery, Firebase
 -->
 
 <!DOCTYPE html>
@@ -271,6 +271,23 @@
 
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB8u-NJwwQFls7y1V8IQe0qMdSzj1Mp-cg",
+    authDomain: "spseol-rozvrh.firebaseapp.com",
+    databaseURL: "https://spseol-rozvrh.firebaseio.com",
+    projectId: "spseol-rozvrh",
+    storageBucket: "spseol-rozvrh.appspot.com",
+    messagingSenderId: "498414811021"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<!--#############################################################################
+	#############################################################################-->
+	
 <script>
 	const v = 5
 	const rozvrh = [705,750,800,845,850,935,945,1030,1045,1130,1135,
@@ -392,6 +409,9 @@
 	var updater = window.setInterval(loaded, 0.2 * 1000); // https://stackoverflow.com/a/2170924; https://www.w3schools.com/js/js_timing.asp
 
 </script>
+
+<!--#############################################################################
+	#############################################################################-->
 
 	</div>
 
